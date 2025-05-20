@@ -79,3 +79,78 @@ resource "google_access_context_manager_access_policy_iam_member" "user_admin" {
   role   = "roles/accesscontextmanager.policyAdmin"
   member = "user:user@domain.com"
 }
+
+//////////////////////////////////////////////////////////////
+
+# module "regular_service_perimeter" {
+#   source         = "terraform-google-modules/vpc-service-controls/google//modules/regular_service_perimeter"
+#   version        = "~> 6.2.1"
+
+#   policy         = "123123123123123"
+#   perimeter_name = "regular_perimeter_1"
+#   description    = "Test Perimeter 1"
+#   resources      = ["448343322927"]
+
+#   restricted_services = ["bigquery.googleapis.com", "aiplatform.googleapis.com"]
+
+#   ingress_policies = [
+#     // ingress 1
+#     {
+#     from = {
+#       sources = {
+#         resources = ["projects/349198887463"]
+#       }
+#       # identity_type = ""
+#       # identities    = ["user:username@domain.com"]
+#     }
+#     to = {
+#       operations = {
+#         "*" = {
+#           methods = ["*"]
+#         }
+#       }
+#     }
+#   },
+#   //ingress2
+#   {
+#     from = {
+#       # identity_type = ""
+#       # identities    = ["user:username@domain.com"]
+#       //identity_type = "ANY_IDENTITY"
+#       sources = {
+#         resources = [
+#           "projects/349198887463",
+#           "projects/317298441760"
+#         ]
+#       }
+#     }
+#     to = {
+#       operations = {
+#         "*" = {
+#           methods = ["*"]
+#         }
+#       }
+#     }
+#   }
+#   ]
+
+#   egress_policies = [{
+#     from = {
+#       identity_type = ""
+#       identities    = ["user:username@domain.com"]
+#     }
+#     to = {
+#       resources = ["*"]
+#       operations = {
+#         "*" = {
+#           methods = ["*"]
+#         }
+#       }
+#     }
+#   }]
+
+#   shared_resources = {
+#     all = ["448343322927"]
+#   }
+# }
+
